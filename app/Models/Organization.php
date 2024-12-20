@@ -19,7 +19,7 @@ class Organization extends Model
     // Relationships
     public function members()
     {
-        return $this->hasMany(Member::class);
+        return $this->hasMany(Member::class, 'org_id');
     }
 
     public function projects()
