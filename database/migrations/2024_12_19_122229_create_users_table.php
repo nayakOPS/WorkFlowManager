@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password', 255); // Hashed password
             $table->text('address')->nullable(); // User’s address
             $table->string('contact', 20)->nullable(); // Contact number
+            $table->rememberToken(); // Remember token column
             $table->timestamps(); // created_at and updated_at timestamps
             $table->timestamp('last_login_at')->nullable(); // Last login timestamp
             $table->softDeletes(); // Soft delete column (deleted_at)
