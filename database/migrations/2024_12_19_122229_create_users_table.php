@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id'); // Primary key
             $table->string('avatar', 255)->nullable(); // Avatar URL or file path
-            $table->boolean('is_active')->default(0); // Tracks online/offline status
+            $table->boolean('is_active'); // Tracks online/offline status
             $table->string('name', 255); // User's full name
             $table->string('email', 255)->unique(); // Unique email address
             $table->timestamp('email_verified_at')->nullable(); // Email verification timestamp

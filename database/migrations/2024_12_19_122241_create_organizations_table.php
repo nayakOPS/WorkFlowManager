@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('avatar', 255)->nullable(); // Store avatar URL or file path
             $table->string('name', 255);
             $table->text('address');
-            $table->string('phone', 15)->nullable();
+            $table->string('phone', 20)->nullable();
             $table->text('description');
-            $table->timestamps(0); // created_at, updated_at
+            $table->timestamps(); // created_at, updated_at
             $table->softDeletes(); // deleted_at for soft delete
         });
     }

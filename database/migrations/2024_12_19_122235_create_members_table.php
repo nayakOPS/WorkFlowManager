@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('role'); // Role (0 = Owner, 1 = Admin, 2 = Member, 3 = Guest)
             $table->bigInteger('user_id')->unsigned(); // Foreign key referencing users.id
             $table->bigInteger('org_id')->unsigned(); // Foreign key referencing organizations.id
-            $table->integer('status')->default(0); // Status (0 = Active, 1 = Suspended, 2 = Left)
+            $table->integer('status'); // Status (0 = Active, 1 = Suspended, 2 = Left)
             $table->timestamps(); // created_at and updated_at timestamps
             $table->softDeletes(); // Soft delete column (deleted_at)
 
