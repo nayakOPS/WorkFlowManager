@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\{MemberController, AuthController};
+use App\Http\Controllers\UserController;
 
 // Public Routes
 Route::post('/auth/register', [AuthController::class, 'register'])->name('auth.register');
@@ -25,4 +26,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::put('/{member}', [MemberController::class, 'update'])->name('members.update');
         Route::delete('/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
     });
+
+    Route::apiResource('', UserController::class);
+
 });
