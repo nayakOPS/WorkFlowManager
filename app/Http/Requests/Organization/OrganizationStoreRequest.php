@@ -11,7 +11,7 @@ class OrganizationStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class OrganizationStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'avatar'=>"string",
+            'avatar'=>'string',
             'name'=>'required|string|max:255',
             'description'=>'required|string|max:255',
             'address'=>'required|string',

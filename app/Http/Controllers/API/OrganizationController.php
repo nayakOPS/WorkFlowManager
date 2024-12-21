@@ -23,10 +23,20 @@ class OrganizationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(OrganizationStoreRequest $request)
+    public function store(Request $request)
     {
         //
-if(Organization::create( $request->validated())){
+
+// Organization::create( $request->validated())
+if(Organization::create(
+    [
+        'avatar'=>$request->avatar,
+        'name'=>$request->name,
+        'description'=>$request->description,
+        'address'=>$request->address,
+        'phone'=>$request->phone,
+    ]
+)){
     return response()->json(["message"=>"Successfully Stored"]);
 }else{
     return response()->json(["message"=>"Error while storing"]);
@@ -38,12 +48,13 @@ if(Organization::create( $request->validated())){
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Organization $organization)
     {
         //
-        $data =Organization::get($id);
+        // $data =Organization::get($id);
 
-        return new OrganizationResource($data);
+
+        return new OrganizationResource($organization);
 
     }
 
@@ -60,9 +71,10 @@ return new OrganizationResource($organization);
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Organization $id)
     {
         //
-        Organization::destroy($id);
+        $id->delete();
+
     }
 }
