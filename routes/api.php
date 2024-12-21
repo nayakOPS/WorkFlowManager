@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\MemberController;
+use App\Http\Controllers\API\OrganizationController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -17,3 +18,5 @@ Route::middleware(['auth:sanctum'])->prefix('members')->group(function () {
     Route::put('/{member}', [MemberController::class, 'update'])->name('members.update');
     Route::delete('/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
 });
+
+Route::apiResource('/organizations',OrganizationController::class);
