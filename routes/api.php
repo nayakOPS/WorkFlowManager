@@ -27,6 +27,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
     });
 
-    Route::apiResource('', UserController::class);
+    Route::apiResource('/users', UserController::class);
 
 });
