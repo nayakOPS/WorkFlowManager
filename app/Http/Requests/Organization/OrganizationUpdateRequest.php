@@ -11,7 +11,7 @@ class OrganizationUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,10 +24,10 @@ class OrganizationUpdateRequest extends FormRequest
         return [
             //
             'avatar'=>"string",
-            'name'=>'required|string|max:255',
+            "name"=>"required|string|max:255|unique:organizations,name,except,id",
             'description'=>'required|string|max:255',
             'address'=>'required|string',
-            'phone'=>'required|string|max:20',
+            "phone"=>"required|string|max:20|unique:organizations,phone,except,id",
 
         ];
     }

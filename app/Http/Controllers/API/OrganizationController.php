@@ -17,31 +17,17 @@ class OrganizationController extends Controller
     public function index()
     {
         //
-        return Organization::paginate(20);
+        return OrganizationResource::collection(Organization::paginate(20));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(OrganizationStoreRequest $request)
     {
         //
 
-// Organization::create( $request->validated())
-if(Organization::create(
-    [
-        'avatar'=>$request->avatar,
-        'name'=>$request->name,
-        'description'=>$request->description,
-        'address'=>$request->address,
-        'phone'=>$request->phone,
-    ]
-)){
-    return response()->json(["message"=>"Successfully Stored"]);
-}else{
-    return response()->json(["message"=>"Error while storing"]);
-
-}
+    return new OrganizationResource(Organization::create( $request->validated()));
 
     }
 
@@ -51,7 +37,7 @@ if(Organization::create(
     public function show(Organization $organization)
     {
         //
-        // $data =Organization::get($id);
+
 
 
         return new OrganizationResource($organization);
@@ -59,7 +45,7 @@ if(Organization::create(
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resources in storage.
      */
     public function update(OrganizationUpdateRequest $request, Organization $organization)
     {
@@ -71,10 +57,11 @@ return new OrganizationResource($organization);
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Organization $id)
+    public function destroy(string $id)
     {
         //
-        $id->delete();
+
+        Organization::destroy($id);
 
     }
 }

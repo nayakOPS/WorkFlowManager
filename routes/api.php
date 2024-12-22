@@ -17,6 +17,6 @@ Route::middleware(['auth:sanctum'])->prefix('members')->group(function () {
     Route::get('/{member}', [MemberController::class, 'show'])->name('members.show');
     Route::put('/{member}', [MemberController::class, 'update'])->name('members.update');
     Route::delete('/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
+    Route::apiResource('/organizations',OrganizationController::class);
 });
 
-Route::apiResource('/organizations',OrganizationController::class);

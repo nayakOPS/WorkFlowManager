@@ -24,8 +24,6 @@ class OrganizationResource extends JsonResource
             "address"=>$this->address,
             "phone"=>$this->phone,
 
-
-
         ];
     }
 }
