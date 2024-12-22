@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\API\{MemberController, AuthController, TaskController};
+use App\Http\Controllers\API\{MemberController, AuthController, TaskController, ProjectController};
 
 // Public Routes
 Route::post('/auth/register', [AuthController::class, 'register'])->name('auth.register');
@@ -32,6 +32,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
     // Project routes
+    Route::prefix('projects')->group(function () {
+        Route::get('/', [MemberController::class, 'index'])->name('projects.index');
+        Route::post('/', [MemberController::class, 'store'])->name('projects.store');
+        Route::get('/{project}', [MemberController::class, 'show'])->name('projects.show');
+        Route::put('/{project}', [MemberController::class, 'update'])->name('projects.update');
+        Route::delete('/{project}', [MemberController::class, 'destroy'])->name('projects.destroy');
+    });
 
     // Task routes
     Route::prefix('tasks')->group(function () {
