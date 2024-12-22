@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Member;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndexRequest extends FormRequest
+class ProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,10 +22,12 @@ class IndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'role' => 'nullable|integer|in:0,1,2,3',
-            'status' => 'nullable|integer|in:0,1,2',
-            'org_id' => 'nullable|exists:organizations,id',
-            'user_id' => 'nullable|exists:users,id',
+            'title'=>'required|string|max:50',
+            'slug'=>'required|string|max:50',
+            'description'=>'required|string|max:255',
+            'created_by'=>'required|string|exists:users,name',
+            'deadline'=>'required|numeric',
+            'organization_id'=>'required|numeric|exists:organizations,id'
         ];
     }
 }

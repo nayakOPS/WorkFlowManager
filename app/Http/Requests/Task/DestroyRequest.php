@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Member;
+namespace App\Http\Requests\Task;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndexRequest extends FormRequest
+class DestroyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,11 +21,6 @@ class IndexRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'role' => 'nullable|integer|in:0,1,2,3',
-            'status' => 'nullable|integer|in:0,1,2',
-            'org_id' => 'nullable|exists:organizations,id',
-            'user_id' => 'nullable|exists:users,id',
-        ];
+        return [];
     }
 }

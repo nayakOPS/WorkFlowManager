@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Member;
+namespace App\Http\Requests\Task;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,10 +22,10 @@ class IndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'role' => 'nullable|integer|in:0,1,2,3',
-            'status' => 'nullable|integer|in:0,1,2',
-            'org_id' => 'nullable|exists:organizations,id',
-            'user_id' => 'nullable|exists:users,id',
+            'status' => 'nullable|integer|in:0,1,2,3',
+            'assigned_to' => 'nullable|exists:users,id',
+            'project_id' => 'nullable|exists:projects,id',
+            'due_date' => 'nullable|date',
         ];
     }
 }
