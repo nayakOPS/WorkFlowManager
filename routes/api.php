@@ -2,8 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\API\{MemberController, AuthController, TaskController, ProjectController};
+use App\Http\Controllers\API\{MemberController, AuthController, TaskController, ProjectController, UserController};
 
 // Public Routes
 Route::post('/auth/register', [AuthController::class, 'register'])->name('auth.register');
@@ -18,6 +17,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     // User routes
+    Route::apiResource('/users', UserController::class);
 
     // Member routes
     Route::prefix('members')->group(function () {
