@@ -2,11 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\{MemberController, AuthController, TaskController, ProjectController, UserController};
+use App\Http\Controllers\API\{MemberController, AuthController, TaskController, ProjectController, UserController, OrganizationController};
+
 
 // Public Routes
 Route::post('/auth/register', [AuthController::class, 'register'])->name('auth.register');
 Route::post('/auth/login', [AuthController::class, 'login'])->name('auth.login');
+
 
 // Protected Routes with Sanctum Middleware
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -49,3 +51,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     });
 });
+
+Route::apiResource('/organizations',OrganizationController::class);
+
+
