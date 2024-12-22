@@ -3,8 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\API\{MemberController, AuthController};
-use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\{MemberController, AuthController, TaskController, UserController};
 
 // Public Routes
 Route::post('/auth/register', [AuthController::class, 'register'])->name('auth.register');
@@ -18,6 +17,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
 
+    // User routes
+    Route::apiResource('/users', UserController::class);
+
     // Member routes
     Route::prefix('members')->group(function () {
         Route::get('/', [MemberController::class, 'index'])->name('members.index');
@@ -27,6 +29,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
     });
 
-    Route::apiResource('/users', UserController::class);
+    // Organization routes
 
+
+    // Project routes
+
+    // Task routes
+    Route::prefix('tasks')->group(function () {
+        Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
+        Route::post('/', [TaskController::class, 'store'])->name('tasks.store');
+        Route::get('/{task}', [TaskController::class, 'show'])->name('tasks.show');
+        Route::put('/{task}', [TaskController::class, 'update'])->name('tasks.update');
+        Route::delete('/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+    });
 });

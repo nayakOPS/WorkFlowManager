@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Http\Requests\UserStoreRequest;
 
 class UserController extends Controller
 {
@@ -40,7 +41,7 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update(UserStoreRequest $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
         $user->update($request->validated());
         return response()->json(['message' => 'User updated successfully!', 'user' => $user]);
