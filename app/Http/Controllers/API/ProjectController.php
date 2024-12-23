@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
-use App\Http\Requests\ProjectRequest;
+use App\Http\Requests\Project\ProjectRequest;
 use App\Http\Resources\ProjectResource;
 
 class ProjectController extends Controller
@@ -33,7 +33,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        $project = Project::findorFail($id);
+        $project = Project::findorFail($project);
         return ProjectResource($project);
     }
 
@@ -42,7 +42,7 @@ class ProjectController extends Controller
      */
     public function update(ProjectRequest $request, Project $project)
     {
-        $project = Product::find($id);
+        $project = Project::find($project);
         if(!$project){
             return response()->json(['error'=>'Project not found'],404);
         }
@@ -55,11 +55,13 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $product = Product::find($id);
+        $project= Project::find($project);
         if(!$project){
             return response()->json(['error'=>'Project not found'],404);
         }
         $project->delete();
         return response()->json(['message'=>'Project deleted successfully'],200);
     }
+
+
 }
