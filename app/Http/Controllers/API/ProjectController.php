@@ -25,7 +25,7 @@ class ProjectController extends Controller
     public function store(ProjectRequest $request)
     {
         $project = Project::create($request->validated());
-        return ProjectResource($project);
+        return new ProjectResource($project);
     }
 
     /**
@@ -34,7 +34,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $project = Project::findorFail($project);
-        return ProjectResource($project);
+        return new ProjectResource($project);
     }
 
     /**
@@ -47,7 +47,7 @@ class ProjectController extends Controller
             return response()->json(['error'=>'Project not found'],404);
         }
         $project->update($request->validated());
-        return ProjectResource($project);
+        return new ProjectResource($project);
     }
 
     /**
