@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
@@ -31,7 +31,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        $project = Project::findorFail($id);
+        $project = Project::findorFail($project);
         return ProjectResource($project);
     }
 
@@ -40,7 +40,7 @@ class ProjectController extends Controller
      */
     public function update(ProjectRequest $request, Project $project)
     {
-        $project = Project::find($id);
+        $project = Project::find($project);
         if(!$project){
             return response()->json(['error'=>'Project not found'],404);
         }
@@ -53,7 +53,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $project= Project::find($id);
+        $project= Project::find($project);
         if(!$project){
             return response()->json(['error'=>'Project not found'],404);
         }
