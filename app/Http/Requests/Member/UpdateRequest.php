@@ -22,6 +22,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // sometimes => the field is validated only if it exists in the request, patch or put works here
             'role' => 'sometimes|integer|in:0,1,2,3',
             'user_id' => 'sometimes|exists:users,id',
             'org_id' => 'sometimes|exists:organizations,id',

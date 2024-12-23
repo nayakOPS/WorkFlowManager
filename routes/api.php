@@ -12,6 +12,7 @@ Route::post('/auth/login', [AuthController::class, 'login'])->name('auth.login')
 
 // Protected Routes with Sanctum Middleware
 Route::middleware(['auth:sanctum'])->group(function () {
+
     // Auth-related routes
     Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::get('/user', function (Request $request) {
@@ -31,7 +32,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     // Organization routes
-
 
     // Project routes
     Route::prefix('projects')->group(function () {

@@ -22,6 +22,7 @@ class IndexRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // nullable = request optional , you can filter only either role or other [art]
             'role' => 'nullable|integer|in:0,1,2,3',
             'status' => 'nullable|integer|in:0,1,2',
             'org_id' => 'nullable|exists:organizations,id',

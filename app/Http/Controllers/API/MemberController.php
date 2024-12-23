@@ -16,7 +16,8 @@ class MemberController extends Controller
 {
     public function index(IndexRequest $indexRequest):JsonResponse
     {
-        $members = Member::query()
+        $members = Member::query() //chaining to build the desired query
+        // first arg check for truthiness, second args applies filter to the query
         ->when($indexRequest->role, fn($query) => $query->where('role', $indexRequest->role))
         ->when($indexRequest->status, fn($query) => $query->where('status', $indexRequest->status))
         ->when($indexRequest->org_id, fn($query) => $query->where('org_id', $indexRequest->org_id))

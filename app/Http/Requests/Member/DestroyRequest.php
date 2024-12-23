@@ -21,8 +21,10 @@ class DestroyRequest extends FormRequest
      */
     public function rules(): array
     {
+        // not needed
         return [
             'id' => 'required|exists:members,id', // Ensure the member exists
+            // id param passeda as part if the URL, ensure id exists in the members table
         ];
     }
 }
